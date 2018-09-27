@@ -1,0 +1,38 @@
+{
+  "name": "sos_dourados",
+  "version": "0.0.1",
+  "description": "Projeto que visa a aproximação do cidadão com a gestão da cidade de Dourados.",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsdevigo/sos_dourados.git"
+  },
+  "keywords": [
+    "social",
+    "gestão",
+    "SAD",
+    "dourados",
+    "público"
+  ],
+  "author": "João Paulo, Lucas Zaurisio e Rodrigo Sanches Devigo",
+  "license": "CC-BY-NC-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/rsdevigo/sos_dourados/issues"
+  },
+  "homepage": "https://github.com/rsdevigo/sos_dourados#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
