@@ -1,0 +1,25 @@
+create table usuario (id_usuario integer, nome varchar(60), idade varchar(3), fone char(11), end varchar(60), email varchar(60), cpf char(11), cep char(8), numero_casa integer, user_criado_em date, user_modificado_em date, senha varchar(30), primary key (id_usuario));
+
+
+create table midia(id_midia integer, tipo_midia integer, tamanho_midia integer, nome_arquivo varchar(60),  midia_criado_em date, midia_modificado_em date, primary key(id_midia));
+
+
+create table reclamacao(id_reclamacao integer, local_lat integer, local_long integer, descricao varchar(600), reclamacao_criado_em date, reclamação_modificado_em date, reclamação_id_midia integer,  primary key(id_reclamacao), foreign key(reclamacão_id_midia) references midia(id_midia));
+
+
+create table EstadoReclamacao(id_EstadoReclamacao integer, nomeEstRec varchar (40), descricao varchar(600), pin_cor integer, primary key(id_reclamacao));
+
+
+create table modeloMensagem(id_ModeloMensagem integer, descMensagem varchar(600), nomeMensagem varchar(60), mensagem_criado_em date, mensagem_modificado_em date, primary key(id_modeloMensagem));
+
+
+create table categoria(id_categoria integer, nomeCategoria varchar(30), descricao_categoria varchar(200), primary key(id_categoria));
+
+
+create table categoriaReclamação(categoriaReclamacao_id_categoria integer, categoriaReclamacao_id_reclamacao integer, foreign key(categoriaReclamacao_id_categoria) references categoria(id_categoria),   foreign key(categoriaReclamacao_id_reclamacao integer) references reclamacao(id_reclamacao));
+
+
+create table ReclamacaoEstadoReclamacao(id_RecEstdRec integer, RecEstdRec_id_reclamacao integer, RecEstdRec_id_EstadoReclmacao integer, RecEstdRec_criado_em date, RecEstdRec_modificado_em date, primary key(id_RecEstdRec), foreign key(RecEstdRec_id_reclamacao) references reclamacao(id_reclamacao), foreign key(RecEstdRec_id_EstadoReclmacao) references EstadoReclamacao(id_EstadoReclamacao));
+
+
+create table reclamacaoMensagem(reclamacaoMensagens_id_modeloMensagem integer, reclamacaoMensagem_id_reclamacao integer, mensagem_personalizada varchar(60), reclamacaoMensagem_criado_em date, reclamacaoMensagem_modificado_em date, foreign key(reclamacaoMensagens_id_modeloMensagem) references modeloMensagem(id_modeloMensagem), foreign key(reclamacaoMensagem_id_reclamacao) references reclamacao(id_reclamacao));
