@@ -11,6 +11,10 @@
   "dependencies": {
     "expo": "^30.0.1",
     "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-bcrypt": "^2.4.0",
+    "react-native-md-textinput": "github:csath/react-native-md-textinput",
+    "react-navigation": "^2.18.1",
+    "url-parse": "^1.4.4"
   }
 }
