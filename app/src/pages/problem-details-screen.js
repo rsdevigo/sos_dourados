@@ -6,7 +6,7 @@ export default class ProblemsScreen extends React.Component {
     render() {
         return (
             <ScrollView style={{backgroundColor: '#ffffff'}}>
-            
+                
             </ScrollView>
         );
     }
