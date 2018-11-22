@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Button, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules} from 'react-native';
+import {Text, View, Button, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules, ScrollView} from 'react-native';
 import { Font } from 'expo';
 import TextField from 'react-native-md-textinput';
 import parse from 'url-parse';
@@ -34,11 +34,19 @@ export default class RegisterScreen extends React.Component {
             <Text style={[styles.title, {fontFamily: 'hind-bold',fontSize: 20}]}>CADASTRO</Text>
           ) : null
         }
+       
         <View style={styles.registerForm}>
-          <TextField label={'Email'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'email')} keyboardType={'email-address'} value={this.state.user.email}/>
-          <TextField label={'Senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'password')} secureTextEntry={true} value={this.state.user.password}/>
-          <TextField label={'Repita a senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'checkPassword')} secureTextEntry={true} value={this.state.user.checkPassword}/>
+          
+            
+            <TextField label={'Endereço'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'end')} value={this.state.user.end}/>
+            <TextField label={'Nome'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'nome')} value={this.state.user.nome}/>
+            <TextField label={'Email'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'email')} keyboardType={'email-address'} value={this.state.user.email}/>
+            <TextField label={'Senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'password')} secureTextEntry={true} value={this.state.user.password}/>
+            <TextField label={'Repita a senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'checkPassword')} secureTextEntry={true} value={this.state.user.checkPassword}/>
+          
+         
         </View>
+
         <View style={{width: '80%', marginBottom: 10}}>
           <Button 
               title='Cadastrar'

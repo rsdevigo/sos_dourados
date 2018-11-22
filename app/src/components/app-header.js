@@ -12,7 +12,7 @@ class AppHeader extends React.Component {
         <View style={[styles.appHeader, {backgroundColor: this.props.backgroundColor}]}>
           <StatusBar hidden={true}/>
           <View style={styles.appHeaderTitle}>
-            <Image style={styles.appHeaderLogo} source={{uri: this.props.icon}} />
+            <Image style={styles.appHeaderLogo} source={require('../../assets/logo.png')} />           
             <Text style={styles.appHeaderTitleText}>{this.props.title}</Text>
           </View>
           <View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   appHeaderTitleText: {
     fontWeight: "500",
-    color: "#ffffff",
+    color: "#1E51A4",
     fontSize: 20,
     margin: 0,
     padding: 0,

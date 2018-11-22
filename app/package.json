@@ -9,12 +9,17 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "expo": "^30.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-action-button": "^2.8.5",
     "react-native-bcrypt": "^2.4.0",
+    "react-native-camera": "^1.4.2",
     "react-native-md-textinput": "github:csath/react-native-md-textinput",
-    "react-navigation": "^2.18.1",
+    "react-native-tab-view": "^1.3.1",
+    "react-native-vector-icons": "^6.1.0",
+    "react-navigation": "^2.18.2",
     "url-parse": "^1.4.4"
   }
 }
