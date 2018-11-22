@@ -4,7 +4,7 @@ var Model = require('./model');
 
 class User extends Model {
     constructor(db) {
-      super(db, 'users');
+      super(db, 'usuario');
     }
 
     email (email, callback) {

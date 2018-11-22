@@ -1,29 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Image, TouchableHighlight, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Image, TouchableHighlight, AsyncStorage } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
-class AppHeader extends React.Component {
+class LogoutButton extends React.Component {
   constructor(props) {
     super(props);
   }
   render () {
     return (
-      <View style={styles.container}>
-        <View style={[styles.appHeader, {backgroundColor: this.props.backgroundColor}]}>
-          <View style={styles.appHeaderTitle}>
-            <Image style={styles.appHeaderLogo} source={require('../../assets/logo.png')} />           
-            <Text style={styles.appHeaderTitleText}>{this.props.title}</Text>
-          </View>
-          <View>
+        <View>
             <TouchableHighlight onPress={this._logout.bind(this)} underlayColor="transparent">
-              <Image
+                <Image
                 style={styles.appHeaderButton}
                 source={require('../../assets/logout_icon.png')}
-              />
-             </TouchableHighlight>
-          </View>
+                />
+            </TouchableHighlight>
         </View>
-      </View>
     );
   }
   
@@ -32,7 +24,7 @@ class AppHeader extends React.Component {
     this.props.navigation.navigate('AuthLoading');
   }
 }
-export default withNavigation(AppHeader);
+export default withNavigation(LogoutButton);
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +45,7 @@ const styles = StyleSheet.create({
   },
   appHeaderTitleText: {
     fontWeight: "500",
-    color: "#1E51A4",
+    color: "#ffffff",
     fontSize: 20,
     margin: 0,
     padding: 0,

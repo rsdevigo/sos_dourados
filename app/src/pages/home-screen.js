@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, AsyncStorage, ScrollView } from 'react-native';
+<<<<<<< HEAD
 import { TabView, TabBar, SceneMap, type Route, type NavigationState} from 'react-native-tab-view';
 import AppHeader from '../components/app-header';
 import Todas from '../components/todas';
@@ -18,6 +19,8 @@ const initialLayout = {
   height: 0,
   width: Dimensions.get('window').width,
 };
+=======
+>>>>>>> react-native-navigation-tabs
 
 export default class HomeScreen extends React.Component {
 
@@ -56,6 +59,7 @@ state = {
 
   render() {
     return (
+<<<<<<< HEAD
     <View>
      <AppHeader title="DOURADOS" backgroundColor="#F8D253" />
      <TabView
@@ -76,6 +80,13 @@ state = {
           </ActionButton.Item>
         </ActionButton>
 
+=======
+      <View style={styles.container}>
+        <ScrollView style={styles.container}>
+          <Text>Home Screen</Text>
+        </ScrollView>
+      </View>
+>>>>>>> react-native-navigation-tabs
     );
   }
 }
