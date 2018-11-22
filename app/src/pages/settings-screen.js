@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, AsyncStorage, ScrollView } from 'react-native';
 
-export default class HomeScreen extends React.Component {
+export default class SettingsScreen extends React.Component {
 
   render() {
     return (

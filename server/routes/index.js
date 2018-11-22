@@ -13,7 +13,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), function(req, re
 router.post('/login', function(req, res, next) {
   var user = {
     email: req.body.email,
-    password: req.body.password,
+    senha: req.body.password,
   };
   let model = new User(res.locals.connection);
   try {
@@ -21,7 +21,7 @@ router.post('/login', function(req, res, next) {
       if (error) throw error;
       console.log(results);
       if (results.length != 0) {  
-        bcrypt.compare(user.password, results[0].password).then(function(isMatch) {
+        bcrypt.compare(user.senha, results[0].senha).then(function(isMatch) {
             if (isMatch) {
               const payload = {
                 id: results[0].id,
