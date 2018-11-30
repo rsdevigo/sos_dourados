@@ -5,6 +5,7 @@ import LoginScreen from './src/pages/login-screen';
 import AuthLoadingScreen from './src/pages/auth-loading-screen';
 import RegisterScreen from './src/pages/register-screen';
 import TabNavigator from './src/pages/tab-screen';
+import TabNavigatorDetails from './src/pages/tab-details';
 import LogoTitle from './src/components/logo-title';
 import LogoutButton from './src/components/logout-button';
 
@@ -30,6 +31,16 @@ const Rotas = createStackNavigator(
     },
     Tab: {
       screen: TabNavigator,
+      navigationOptions: {
+        headerTitle: <LogoTitle />,
+        headerRight: (
+          <LogoutButton />
+        ),
+        headerLeft: null
+      }
+    }
+    TabDetails: {
+      screen: TabNavigatorDetails,
       navigationOptions: {
         headerTitle: <LogoTitle />,
         headerRight: (
