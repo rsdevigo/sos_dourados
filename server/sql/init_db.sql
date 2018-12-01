@@ -30,12 +30,16 @@ create table reclamacao(
     id integer AUTO_INCREMENT, 
     local_lat integer, 
     local_long integer, 
+    endereco varchar(600),
+    numero varchar(40),
     descricao varchar(600), 
-    reclamacao_criado_em datetime DEFAULT CURRENT_TIMESTAMP,
-    reclamação_modificado_em datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
+    reclamacao_criado_em timestamp DEFAULT CURRENT_TIMESTAMP,
+    reclamação_modificado_em timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
     id_midia integer,  
+    id_usuario integer, 
     primary key(id), 
-    foreign key(id_midia) references midia(id)
+    foreign key(id_midia) references midia(id),
+    foreign key(id_usuario) references usuario(id),
 );
 
 
@@ -96,3 +100,8 @@ create table reclamacao_mensagem(
     foreign key(id_modelo_mensagem) references modelo_mensagem(id), 
     foreign key(id_reclamacao) references reclamacao(id)
 );
+
+INSERT INTO categoria(nome_categoria) VALUES('Iluminação Pública');
+INSERT INTO categoria(nome_categoria) VALUES('Dano ao Patrimônio Público');
+INSERT INTO categoria(nome_categoria) VALUES('Limpeza Pública');
+INSERT INTO categoria(nome_categoria) VALUES('Tapa Buraco');

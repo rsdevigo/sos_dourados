@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var problemsRouter = require('./routes/problems');
 var passport = require('passport');
 var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -50,8 +51,8 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
     });
     connection.connect(function(err) {
         if (err) throw err;
-        User = new User(connection);
-        User.find.by.id(jwt_payload.id, function(err, results) {
+        let model = new User(connection);
+        model.find.by.id(jwt_payload.id, function(err, results) {
           if (err) {
             return done(err, false);
           }
@@ -69,6 +70,7 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
 
 app.use('/api/v1/', indexRouter);
 app.use('/api/v1/', usersRouter);
+app.use('/api/v1/', problemsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
