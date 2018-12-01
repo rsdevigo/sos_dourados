@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, ScrollView, StyleSheet } from 'react-native';
+import { Text, ScrollView, StyleSheet, View, Image } from 'react-native';
 import Problem from '../components/problem';
 import MapView from 'react-native-maps';
 
-export default class ProblemsScreen extends React.Component {
+export default class ProblemDetailsScreen extends React.Component {
     render() {
         return (
             <ScrollView style={{backgroundColor: '#ffffff'}}>
@@ -46,7 +46,6 @@ export default class ProblemsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   perfilProblem: {
-	height: 64,
     paddingLeft: 16,
     paddingRight: 16,
     margin: 8,

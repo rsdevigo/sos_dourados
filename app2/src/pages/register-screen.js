@@ -1,19 +1,20 @@
 import React from 'react';
-import {Text, View, Button, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules, AsyncStorage} from 'react-native';
+import {Text, View, Button, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules, ScrollView} from 'react-native';
 import { Font } from 'expo';
 import TextField from 'react-native-md-textinput';
 import parse from 'url-parse';
 const {hostname} = parse(NativeModules.SourceCode.scriptURL, true);
 
 
-export default class LoginScreen extends React.Component {
+export default class RegisterScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fontLoaded: false,
       user: {
         email: '',
-        password: ''
+        password: '',
+        checkPassword: ''
       }
     };
   }
@@ -28,23 +29,37 @@ export default class LoginScreen extends React.Component {
             <Text style={[styles.logotipo, {fontFamily: 'hind-bold',fontSize: 32}]}>DOURADOS</Text>
           ) : null
         }
-        <View style={styles.loginForm}>
-          <TextField label={'Email'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'email')} keyboardType={'email-address'} value={this.state.user.email}/>
-          <TextField label={'Senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'password')} secureTextEntry={true} value={this.state.user.password}/>
+        {
+          this.state.fontLoaded ? (
+            <Text style={[styles.title, {fontFamily: 'hind-bold',fontSize: 20}]}>CADASTRO</Text>
+          ) : null
+        }
+       
+        <View style={styles.registerForm}>
+          
+            
+            <TextField label={'Endereço'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'end')} value={this.state.user.end}/>
+            <TextField label={'Nome'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'nome')} value={this.state.user.nome}/>
+            <TextField label={'Email'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'email')} keyboardType={'email-address'} value={this.state.user.email}/>
+            <TextField label={'Senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'password')} secureTextEntry={true} value={this.state.user.password}/>
+            <TextField label={'Repita a senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'checkPassword')} secureTextEntry={true} value={this.state.user.checkPassword}/>
+          
+         
         </View>
+
         <View style={{width: '80%', marginBottom: 10}}>
           <Button 
-              title='Entrar'
+              title='Cadastrar'
               color='#1E51A4'
-              onPress={() => {this._submit_login_form()}}
-              accessibilityLabel='Botão que realiza o login do usuário'
+              onPress={() => {this._submit_register_form()}}
+              accessibilityLabel='Botão que realiza o cadastro do usuário'
             />
         </View>
-        <View style={{width: '80%', marginBottom: 10}}>
+        <View style={{width: '80%'}}>
           <Button 
-              title='Registrar'
-              color='#5b7dd6'
-              onPress={() => {this.props.navigation.navigate('Register')}}
+              title='Voltar'
+              color='#d32f2f'
+              onPress={() => {this.props.navigation.navigate('AuthLoading')}}
               accessibilityLabel='Botão que realiza o cadastro do usuário'
             />
         </View>
@@ -52,19 +67,21 @@ export default class LoginScreen extends React.Component {
     );
   }
 
-  async _submit_login_form() {
-    var user = {
-      email: this.state.user.email,
-      password: this.state.user.password
-    }; 
-    console.log("asd");
-    //this._login(user);
-    
+  async _submit_register_form() {
+    if (this.state.user.password == this.state.user.checkPassword) {
+      var user = {
+        email: this.state.user.email,
+        password: this.state.user.password
+      }; 
+      this._register(user);
+    } else {
+      Alert.alert('Senhas não conferem');
+    }
   }
 
-  async _login(user) {
+  async _register(user) {
     try {
-      let response = await fetch('http://'+hostname + ':3000/api/v1/login', {
+      let response = await fetch('http://'+hostname + ':3000/api/v1/user', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -73,15 +90,15 @@ export default class LoginScreen extends React.Component {
         body: JSON.stringify(user)
       });
       let responseJson = await response.json();
-      if (response.status == 200) {
-        // Adiciona token no user storage
-        await AsyncStorage.setItem('current_user_token', responseJson.token);
-        this.props.navigation.navigate('AuthLoading');
-      } else if(response.status == 401) {
-        Alert.alert(responseJson.message);
-      } else {
-        throw responseJson;
-      }
+      
+      Alert.alert(
+        'Cadastro',
+        responseJson.message,
+        [
+          {text: 'OK', onPress: () => this.props.navigation.navigate('AuthLoading')},
+        ],
+        { cancelable: false });
+      
     } catch (e) {
       console.log(e.message);
     }
@@ -141,20 +158,19 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginTop: 10
   },
-  loginForm: {
+  registerForm: {
     width: '80%',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     flexDirection: 'column',
     padding: 10,
-    paddingBottom: 40,
     borderRadius: 2,
     backgroundColor: '#1E51A4',
     opacity: 0.6,
     marginBottom: 20
   },
-  loginButton: {
+  registerButton: {
     backgroundColor: '#1E51A4',
     alignItems: 'center',
     padding: 10,

@@ -8,6 +8,7 @@ import ProblemScreen from './src/pages/problem-screen';
 import TabNavigator from './src/pages/tab-screen';
 import LogoTitle from './src/components/logo-title';
 import LogoutButton from './src/components/logout-button';
+import ProblemDetailsScreen from './src/pages/problem-details-screen';
 global.self = global;
 
 const Rotas = createStackNavigator(
@@ -54,6 +55,22 @@ const Rotas = createStackNavigator(
           <LogoutButton />
         ),
         headerLeft: null
+      }
+    },
+    ProblemDetails: {
+      screen: ProblemDetailsScreen,
+      navigationOptions: {
+        headerTitle: <LogoTitle />,
+        headerRight: (
+          <LogoutButton />
+        ),
+        headerTitleContainerStyle: {
+          paddingBottom: 12,
+        },
+        headerLeftContainerStyle: {
+          marginRight: 0,
+          padding: 0,
+        }
       }
     }
   },

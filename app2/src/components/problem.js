@@ -3,22 +3,29 @@ import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 class Problem extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  formatDate (date) {
+    let d = new Date(date);
+    return d.getDay()+'/'+d.getMonth()+'/'+d.getFullYear();
+  }
   render() {
     return (
     <View>
       <View style={styles.problemBack}>
         <View style={styles.problemText}>
-          <Text style={styles.problemTitle}>Rua Major Capilé, 5193</Text>
-          <Text style={styles.problemaCategory}>Iluminação pública</Text>
+          <Text style={styles.problemTitle}>{this.props.endereco}</Text>
+          <Text style={styles.problemaCategory}>{this.props.categorias}</Text>
         </View>
         <View style={styles.problemTime}>
-          <TouchableHighlight onPress={()=>{this.props.navigation.navigate('Problem')}} underlayColor="transparent">
+          <TouchableHighlight onPress={()=>{this.props.navigation.navigate('ProblemDetails', {id: this.props.key})}} underlayColor="transparent">
               <Image
               style={styles.problemDetailsButton}
               source={require('../../assets/details_icon.png')}
               />
           </TouchableHighlight>
-          <Text style={styles.problemTimeText}>08/11/2018</Text>
+          <Text style={styles.problemTimeText}>{this.formatDate(this.props.data)}</Text>
         </View>
       </View>
       <View style={styles.problemDivider}></View>
