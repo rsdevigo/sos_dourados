@@ -12,7 +12,7 @@ class LogoutButton extends React.Component {
             <TouchableHighlight onPress={this._logout.bind(this)} underlayColor="transparent">
                 <Image
                 style={styles.appHeaderButton}
-                source={require('../../assets/logout_icon.png')}
+                source={require('../../assets/logout_icon2.png')}
                 />
             </TouchableHighlight>
         </View>

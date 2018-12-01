@@ -32,6 +32,7 @@ router.get('/problem/:id', passport.authenticate('jwt', {session: false}), funct
     model.find.by.id(1, function(error, results, fields) {
       if (error) throw error;
       console.log(results);
+      results.photo = 'lampada.jpg';
       res.send(results);
     });
   } catch (e) {

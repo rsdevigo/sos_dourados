@@ -34,7 +34,7 @@ export default class ProblemDetailsScreen extends React.Component {
         });
 				result = await result.json();
 				this.setState({
-					photo: '',
+					photo: result.photo,
 					category: result.categories.join(', '),
 					description: result.descricao,
 					situation: result.states[0].nome_est_rec,
@@ -51,7 +51,7 @@ export default class ProblemDetailsScreen extends React.Component {
     render() {
         return (
             <ScrollView style={{backgroundColor: '#ffffff'}} contentContainerStyle={{padding: 8}}>
-							<Image source={require('../../assets/lampada.jpg')} style={styles.foto}/>
+							<Image source={{uri: 'http://'+hostname + ':3000/photos/'+this.state.photo}} style={styles.foto}/>
 							<Text style={styles.category}>{this.state.category} - {this.formatDate(this.state.date)}</Text>              	
 							<Text style={styles.problemaComentario}>{this.state.description}</Text>
 							<Text>Situação: {this.state.situation} </Text>
