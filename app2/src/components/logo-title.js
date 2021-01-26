@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
-import { Font } from 'expo';
+import * as Font from 'expo-font'
 
 export default class LogoTitle extends React.Component {
   constructor(props) {
