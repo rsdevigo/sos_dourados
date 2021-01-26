@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, Button, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules, ScrollView} from 'react-native';
-import { Font } from 'expo';
+import * as Font from 'expo-font'
 import TextField from 'react-native-md-textinput';
 import parse from 'url-parse';
 const {hostname} = parse(NativeModules.SourceCode.scriptURL, true);

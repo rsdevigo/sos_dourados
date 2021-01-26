@@ -1,6 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, Platform, Image, Button} from 'react-native';
-import { Camera, Permissions, Location, Constants } from 'expo';
+//import { Camera, Permissions, Location, Constants } from 'expo';
+import { Camera } from 'expo-camera'
+import Constants from 'expo-constants'
+import * as Font from 'expo-font'
+import * as Permissions from 'expo-permissions'
 import CheckBox from 'react-native-checkbox';
 
 export default class ProblemScreen extends React.Component {

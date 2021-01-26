@@ -7,9 +7,13 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^31.0.2",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "expo": "^33.0.0",
+    "expo-camera": "^5.0.1",
+    "expo-constants": "^5.0.1",
+    "expo-font": "^5.0.1",
+    "expo-permissions": "^5.0.1",
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-action-button": "^2.8.5",
     "react-native-bcrypt": "^2.4.0",
     "react-native-camera": "^1.4.2",
