@@ -39,7 +39,7 @@ create table reclamacao(
     id_usuario integer, 
     primary key(id), 
     foreign key(id_midia) references midia(id),
-    foreign key(id_usuario) references usuario(id),
+    foreign key(id_usuario) references usuario(id)
 );
 
 

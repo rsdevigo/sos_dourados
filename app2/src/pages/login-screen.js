@@ -57,7 +57,6 @@ export default class LoginScreen extends React.Component {
       email: this.state.user.email,
       password: this.state.user.password
     }; 
-    console.log("asd");
     this._login(user);
     
   }
