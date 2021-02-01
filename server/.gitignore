@@ -1,3 +1,4 @@
 .env
 node_modules/
-public/photos/*
+public/photos/*.jpg
+public/photos/*.png
