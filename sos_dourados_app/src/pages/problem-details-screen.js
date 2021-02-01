@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, NativeModules, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Config from "react-native-config";
+import {API_URL, PHOTOS_URL} from "@env";
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import { Col, Container, Content, Grid, Text, View, Row, Spinner, Button } from 'native-base';
@@ -40,7 +40,7 @@ export default class ProblemDetailsScreen extends React.Component {
 			let problemId = this.props.route.params.id;
 			token = await AsyncStorage.getItem('current_user_token');
 			try {
-				let result = await fetch(Config.API_URL+'/problem/'+problemId, {
+				let result = await fetch(API_URL+'/problem/'+problemId, {
 					method: 'GET',
 					headers: {
 						'Content-Type' : 'application/x-www-form-urlencoded', 
@@ -104,7 +104,7 @@ export default class ProblemDetailsScreen extends React.Component {
 					<LogoTitle hasBack />
 					<Content style={{padding: 0}}>
 						<View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 250, marginTop: 10}}>
-							<Image source={{uri: Config.PHOTOS_URL+this.state.photo}} style={styles.foto} />
+							<Image source={{uri: PHOTOS_URL+this.state.photo}} style={styles.foto} />
 						</View>
 						<View style={{marginTop: 10, padding: 10, backgroundColor: "#1E51A4"}}>
 							<Grid>

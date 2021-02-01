@@ -19,6 +19,20 @@ router.get('/users', passport.authenticate('jwt', {session: false}), function(re
   }
 });
 
+router.get('/user', passport.authenticate('jwt', {session: false}), function(req, res, next) {
+  let model = new User(db);
+  try {
+    model.find.by.id(req.user.id, function(error, results, fields) {
+      if (error) throw error;
+      if (results.length == 0) throw error;
+      res.send(results[0]);
+    });
+  } catch (e) {
+    console.log(e);
+    res.send({message: 'Houve um erro com a requisição', error: true});
+  }
+});
+
 router.post('/user', function(req, res, next) {
   var user = {
     email: req.body.email,

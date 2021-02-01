@@ -3,7 +3,7 @@ import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import { Col, Container, Content, Grid, Text, View, Row, Spinner, Button } from 'native-base';
 import { StyleSheet, Image, NativeModules, Dimensions, Alert } from 'react-native';
-import Config from "react-native-config";
+import {API_URL, PHOTOS_URL} from "@env";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const categorias = ['Iluminação Pública', 'Dano ao Patrimônio Público', 'Limpeza Pública', 'Tapa Buraco'];
@@ -105,7 +105,7 @@ export default class ProblemCreateStepThree extends React.Component {
     async sendProblem(problem) {
         let token = await AsyncStorage.getItem('current_user_token');
         try {
-            let result = await fetch(Config.API_URL+'/problem', {
+            let result = await fetch(API_URL+'/problem', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -159,7 +159,7 @@ export default class ProblemCreateStepThree extends React.Component {
             },
         };
         try {
-            let result = await fetch('http://'+hostname+':3000/api/v1/midia/', options);
+            let result = await fetch(API_URL+'/midia/', options);
             if (result.status == 200) {
                 result = await result.json();
                 return result;

@@ -3,7 +3,7 @@ import {NativeModules, RefreshControl, FlatList, Alert } from 'react-native';
 import { Fab, Text, Container, Content, View, Button, Spinner, Icon } from 'native-base';
 import Problem from '../components/problem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Config from "react-native-config";
+import {API_URL} from "@env";
 
 export default class ProblemsScreen extends React.Component {
 
@@ -31,9 +31,11 @@ export default class ProblemsScreen extends React.Component {
     }
 
     async _getProblems () {
+        console.log(API_URL);
+        
         try {
             let token = await AsyncStorage.getItem('current_user_token');
-            let result = await fetch(Config.API_URL+'/problems/'+this.filter, {
+            let result = await fetch(API_URL+'/problems/'+this.filter, {
                 method: 'GET',
                 headers: {
                     'Content-Type' : 'application/json', 

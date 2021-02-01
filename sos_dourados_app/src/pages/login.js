@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, StatusBar, Image, NativeModules, Alert } f
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Grid, Col, Row} from 'react-native-easy-grid';
 import { Container, Form, Item, Input, Label, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
-import Config from "react-native-config";
+import {API_URL} from "@env";
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -72,7 +72,7 @@ export default class LoginScreen extends React.Component {
 
   async _login(user) {
     try {
-      let response = await fetch(Config.API_URL+'/login', {
+      let response = await fetch(API_URL+'/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

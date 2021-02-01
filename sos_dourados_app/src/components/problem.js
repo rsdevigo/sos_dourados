@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, TouchableHighlight, Image, NativeModules} from 'react-native';
 import {ListItem, Left, Thumbnail, Body, Text, Right, Button, Icon} from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import Config from "react-native-config";
+import {API_URL, PHOTOS_URL} from "@env";
 
 function Problem({id, photo, data, categorias, endereco}) {
 
@@ -16,7 +16,7 @@ function Problem({id, photo, data, categorias, endereco}) {
   return (
     <ListItem thumbnail onPress={()=>{navigation.navigate('ProblemDetails', {id: id})}} >
       <Left>
-        <Thumbnail square source={{uri: Config.PHOTOS_URL+photo}} />
+        <Thumbnail square source={{uri: PHOTOS_URL+photo}} />
       </Left>
       <Body>
         <Text>{endereco}</Text>
