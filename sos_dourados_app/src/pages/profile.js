@@ -96,12 +96,8 @@ export default function ProfileScreen({ navigation }) {
                       <Icon
                         name="location"
                         style={{ color: '#ffffff', fontSize: 24 }}
-                      />
-                      {' '}
-                      {user.endereco}
-                      ,
-                      {' '}
-                      {user.numero_casa}
+                      />{' '}
+                      {user.endereco}, {user.numero_casa}
                     </Text>
                   </LinearGradient>
                 </Col>
@@ -151,10 +147,6 @@ export default function ProfileScreen({ navigation }) {
                 </Col>
               </Row>
             </Grid>
-            <Item>
-              <Icon active name="home" />
-              <Input placeholder="Icon Textbox" />
-            </Item>
           </>
         )}
       </Content>
