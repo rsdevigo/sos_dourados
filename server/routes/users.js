@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../model/db');
 var User = require('../model/user');
 var bcrypt = require('bcrypt');
 const passport = require('passport');
 
 /* GET users listing. */
 router.get('/users', passport.authenticate('jwt', {session: false}), function(req, res, next) {
-  let model = new User(res.locals.connection);
+  let model = new User(db);
   try {
     model.findAll(function(error, results, fields) {
       if (error) throw error;
@@ -22,8 +23,9 @@ router.post('/user', function(req, res, next) {
   var user = {
     email: req.body.email,
     senha: req.body.password,
+    nome: req.body.nome
   };
-  let model = new User(res.locals.connection);
+  let model = new User(db);
   try {
     model.find.by.email(user.email, function(error, results, fields){
       if (results.length == 0 ) {

@@ -1,0 +1,4 @@
+Validação no registro
+Quais informações no cadastro (nome e telefone) ?
+Login com telefone, precisamos de um sistema de sms.
+Configuração de perfil

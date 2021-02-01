@@ -35,7 +35,6 @@ export default class ProblemsScreen extends React.Component {
 
         try {
             token = await AsyncStorage.getItem('current_user_token');
-            console.log(token);
             let result = await fetch('http://'+hostname + ':3000/api/v1/problems/'+this.filter, {
                 method: 'GET',
                 headers: {

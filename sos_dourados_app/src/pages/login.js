@@ -3,8 +3,7 @@ import { ImageBackground, StyleSheet, StatusBar, Image, NativeModules, Alert } f
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Grid, Col, Row} from 'react-native-easy-grid';
 import { Container, Form, Item, Input, Label, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
-import parse from 'url-parse';
-const {hostname} = parse(NativeModules.SourceCode.scriptURL, true);
+import Config from "react-native-config";
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -22,34 +21,6 @@ export default class LoginScreen extends React.Component {
           <Container>
               <StatusBar hidden={true} />
               <ImageBackground style={styles.backgroundContainer} imageStyle={styles.backgroundImage} source={require('../../assets/initial_bg.png')} style={{width: '100%', height: '100%'}}>
-              {/* <Grid>
-                  <Col style={{ alignItems: 'center', justifyContent: 'center'}}>
-                      <Row style={styles.backgroundContainer}>
-                          <Image source={require('../../assets/logo.png')} style={styles.logo} />
-                          <Text style={[styles.logotipo, {fontFamily: 'Roboto_medium', fontSize: 32}]} >DOURADOS</Text>
-                      </Row>
-                      <Row style={{margin: 0, padding: 0, flexDirection: 'column', alignItems: 'center'}}>
-                          <Form style={styles.loginForm}>
-                              <Item style={styles.inputItem} floatingLabel>
-                                  <Label style={styles.input}>Email</Label>
-                                  <Input style={styles.input} textContentType='emailAddress' value={this.state.user.email} onChangeText={text => this.updateField(text, 'email')}/>
-                              </Item>
-                              <Item style={styles.inputItem} floatingLabel>
-                                  <Label style={styles.input}>Senha</Label>
-                                  <Input style={styles.input} secureTextEntry={true} value={this.state.user.password} onChangeText={text => this.updateField(text, 'password')} />
-                              </Item>
-                          </Form>
-                          <Button onPress={() => {this._submit_login_form()} } full style={styles.loginButton}>
-                            <Text>Entrar</Text>
-                          </Button>
-                      </Row>
-                      <Row style={{margin: 0, padding: 0, flexDirection: 'column', flex: 1, width: '80%'}}>
-                        <Button onPress={() => {this.props.navigation.navigate('Register')}} full style={styles.registerButton}>
-                          <Text>Registrar</Text>
-                        </Button>
-                      </Row>
-                  </Col>
-              </Grid> */}
               <Grid>
                 <Col style={{ alignItems: 'center', justifyContent: 'center'}}>
                   <Row size={1} style={{margin: 0, padding: 0, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
@@ -101,7 +72,7 @@ export default class LoginScreen extends React.Component {
 
   async _login(user) {
     try {
-      let response = await fetch('http://'+ hostname + ':3000/api/v1/login', {
+      let response = await fetch(Config.API_URL+'/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -113,7 +84,6 @@ export default class LoginScreen extends React.Component {
       if (response.status == 200) {
         // Adiciona token no user storage
         await AsyncStorage.setItem('current_user_token', responseJson.token);
-        this.props.navigation.navigate('Home');
       } else if(response.status == 401) {
         Alert.alert(responseJson.message);
       } else {

@@ -3,8 +3,7 @@ import { ImageBackground, StyleSheet, StatusBar, Image, NativeModules, Alert } f
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Grid, Col, Row} from 'react-native-easy-grid';
 import { Container, Form, Item, Input, Label, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
-import parse from 'url-parse';
-const {hostname} = parse(NativeModules.SourceCode.scriptURL, true);
+import Config from "react-native-config";
 
 export default class RegisterScreen extends React.Component {
   constructor(props) {
@@ -24,7 +23,36 @@ export default class RegisterScreen extends React.Component {
           <Container>
               <StatusBar hidden={true} />
               <ImageBackground style={styles.backgroundContainer} imageStyle={styles.backgroundImage} source={require('../../assets/initial_bg.png')} style={{width: '100%', height: '100%'}}>
-              <Grid>
+              <Content contentContainerStyle={{alignItems: 'center'}}>
+                <Image source={require('../../assets/logo.png')} style={styles.logo} />
+                <Text style={[styles.logotipo, {fontFamily: 'Roboto_medium', fontSize: 32}]} >DOURADOS</Text>
+                <Text style={[styles.logotipo, {fontFamily: 'Roboto_medium', fontSize: 32}]} >Cadastro</Text>
+                <Form style={styles.loginForm}>
+                    <Item style={styles.inputItem} floatingLabel>
+                        <Label style={styles.input}>Nome</Label>
+                        <Input style={styles.input} value={this.state.user.nome} onChangeText={text => this.updateField(text, 'nome')} />
+                    </Item>
+                    <Item style={styles.inputItem} floatingLabel>
+                        <Label style={styles.input}>Email</Label>
+                        <Input style={styles.input} textContentType='emailAddress' value={this.state.user.email} onChangeText={text => this.updateField(text, 'email')} />
+                    </Item>
+                    <Item style={styles.inputItem} floatingLabel>
+                        <Label style={styles.input}>Senha</Label>
+                        <Input style={styles.input} secureTextEntry={true} value={this.state.user.password} onChangeText={text => this.updateField(text, 'password')} />
+                    </Item>
+                    <Item style={styles.inputItem} floatingLabel>
+                        <Label style={styles.input}>Repita a senha</Label>
+                        <Input style={styles.input} secureTextEntry={true} value={this.state.user.checkPassword} onChangeText={text => this.updateField(text, 'checkPassword')} />
+                    </Item>
+                </Form>
+                <Button onPress={() => {this._submit_register_form()} } full style={styles.loginButton}>
+                  <Text>Registrar</Text>
+                </Button>
+                <Button onPress={() => {this.props.navigation.navigate('Login')}} full style={styles.registerButton}>
+                  <Text>Voltar</Text>
+                </Button>
+              </Content>
+              {/* <Grid>
                 <Col style={{ alignItems: 'center', justifyContent: 'center'}}>
                   <Row size={0.9} style={{margin: 0, padding: 0, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                       <Image source={require('../../assets/logo.png')} style={styles.logo} />
@@ -58,7 +86,7 @@ export default class RegisterScreen extends React.Component {
                     </Button>
                   </Row>
                 </Col>
-              </Grid>
+              </Grid> */}
               </ImageBackground>
           </Container>
       )
@@ -78,7 +106,8 @@ export default class RegisterScreen extends React.Component {
     if (this.state.user.password == this.state.user.checkPassword) {
       var user = {
         email: this.state.user.email,
-        password: this.state.user.password
+        password: this.state.user.password,
+        nome: this.state.user.nome
       }; 
       this._register(user);
     } else {
@@ -88,7 +117,7 @@ export default class RegisterScreen extends React.Component {
 
   async _register(user) {
     try {
-      let response = await fetch('http://'+hostname + ':3000/api/v1/user', {
+      let response = await fetch(Config.API_URL+'/user', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

@@ -1,4 +1,5 @@
 var express = require('express');
+var db = require('../model/db');
 var User = require('../model/user');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
@@ -15,11 +16,10 @@ router.post('/login', function(req, res, next) {
     email: req.body.email,
     senha: req.body.password,
   };
-  let model = new User(res.locals.connection);
+  let model = new User(db);
   try {
     model.find.by.email(user.email, function(error, results, fields) {
       if (error) throw error;
-      console.log(results);
       if (results.length != 0) {  
         bcrypt.compare(user.senha, results[0].senha).then(function(isMatch) {
             if (isMatch) {
@@ -28,7 +28,7 @@ router.post('/login', function(req, res, next) {
                 email: user.email
               };
               jwt.sign(payload, 'secret', { expiresIn: 36000 }, (err, token) => {
-                if (err) res.status(500).json({ error: true, message: err }); 
+                if (err) res.status(500).json({ error: true, message: err });
                 res.json({token: token });
               }); 
             } else {
