@@ -59,7 +59,7 @@ export default class ProblemCreateStepOne extends React.Component {
 
     async _snap() {
         if (this.camera) {
-          let photo = await this.camera.takePictureAsync();
+          let photo = await this.camera.takePictureAsync({skipProcessing : true});
           this.props.updatePhoto(photo);
         }
       }
